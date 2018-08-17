@@ -7,22 +7,21 @@ const connectFnc = function() {
 		port: $.port,
 		server: {
 			baseDir: $.dest
-		},
-		reloadDelay: 2000,
-		reloadDebounce: 2000
+		}
 	});
-	$.gulp.watch($.script_assets, ["watch"]);
+	// console.log("Script Assets = ", $.script_assets);
+	// $.gulp.watch($.script_assets, ["watch"]);
 };
 
 const reloadFnc = function() {
 	console.log("----------- Reloading the application --------------");
-	$.reload();
+	$.connect.reload();
 };
 
 $.gulp.task(
 	"watch",
 	`Watches for any changes in source then rebuilds`,
-	["html", "misc", "js", "css"],
+	["build"],
 	reloadFnc
 );
 
@@ -35,9 +34,9 @@ $.gulp.task(
 	connectFnc
 );
 
-$.gulp.task(
-	"reload",
-	"Reloads the browsers after any changes as a result of a rebuild",
-	[],
-	reloadFnc
-);
+// $.gulp.task(
+// 	"reload",
+// 	"Reloads the browsers after any changes as a result of a rebuild",
+// 	[],
+// 	reloadFnc
+// );

@@ -12,7 +12,7 @@ const concat = require("gulp-concat"); // A gulp plugin to combine multiple file
 const requireDir = require("require-dir"); // Plugin to require() directories.
 const source = require("vinyl-source-stream"); // Plugin to convert the readable stream from browserify into a vinyl stream for gulp
 
-const reload = connect.reload; // browser-sync component to reload the browser
+// const reload = connect.reload; // browser-sync component to reload the browser
 
 const src = process.env.SOURCE_ROOT;
 const dest = process.env.BASE_PATH;
@@ -78,7 +78,6 @@ module.exports = {
 	gulp: gulp,
 	concat: concat,
 	connect: connect,
-	reload: reload,
 	requireDir: requireDir,
 	source: source
 };

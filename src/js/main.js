@@ -15,11 +15,12 @@ const env = {
 
 const $ = require("jquery");
 const a = require("./app.js");
-const tables = require("./tables.js");
+
 
 $(document).ready(function() {
-	Promise.all([a.initData(env)])
+	var xxxy = Promise.all([a.initData(env)])
 		.then(function(state) {
+			console.log("Load - ", new Date());
 			if (state) {
 				console.log("Data Good");
 				const vul = a.getVulnerabilities();
@@ -27,17 +28,24 @@ $(document).ready(function() {
 				const routines = a.getRoutines();
 
 				const Table = $("#response");
-				Table.html(tables.getVulnerabilitiesTable(vul) + tables.getPackagesTable(pack) + tables.getRoutinesTable(routines));
+				const tableData = a.getTable();
+				Table.html(tableData);
 				$("#pageLoading").hide();
 
 				$(".ExpandCollapse").click(function() {
 					console.log("Click");
 					$(this).parents().next('.hide').toggle();
 				});
+
+				console.log("Page is finished loading");
 			}
 			else {
 				console.log("Data Failure");
 			}
+		return null;
 		}
 	);
+		return null;
 });
+
+
