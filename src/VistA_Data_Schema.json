@@ -1,0 +1,140 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "",
+  "type": "object",
+  "properties": {
+	"Keyword": {
+	  "type": "array",
+	  "uniqueItems": true,
+	  "minItems": 1,
+	  "items": {
+		"required": [
+		  "id",
+		  "name",
+		  "type",
+		  "value"
+		],
+		"properties": {
+		  "id": {
+			"type": "string",
+			"minLength": 1
+		  },
+		  "name": {
+			"type": "string",
+			"minLength": 1
+		  },
+		  "type": {
+			"type": "string",
+			"minLength": 1
+		  },
+		  "value": {
+			"type": "string",
+			"minLength": 1
+		  }
+		}
+	  }
+	},
+	"packages": {
+	  "type": "object",
+	  "properties": {
+		"nodes": {
+		  "type": "array",
+		  "uniqueItems": true,
+		  "minItems": 1,
+		  "items": {
+			"required": [],
+			"properties": {
+			  "data": {
+				"type": "object",
+				"properties": {
+				  "Globals": {
+					"type": "number"
+				  },
+				  "NodeType": {
+					"type": "string",
+					"minLength": 1
+				  },
+				  "Routines": {
+					"type": "number"
+				  },
+				  "id": {
+					"type": "string",
+					"minLength": 1
+				  },
+				  "name": {
+					"type": "string",
+					"minLength": 1
+				  },
+				  "score": {
+					"type": "number"
+				  }
+				},
+				"required": [
+				  "Globals",
+				  "NodeType",
+				  "Routines",
+				  "id",
+				  "name",
+				  "score"
+				]
+			  }
+			}
+		  }
+		}
+	  },
+	  "required": [
+		"nodes"
+	  ]
+	},
+	"routines": {
+	  "type": "object",
+	  "properties": {
+		"nodes": {
+		  "type": "array",
+		  "uniqueItems": true,
+		  "minItems": 1,
+		  "items": {
+			"required": [],
+			"properties": {
+			  "data": {
+				"type": "object",
+				"properties": {
+				  "NodeType": {
+					"type": "string",
+					"minLength": 1
+				  },
+				  "Package": {
+					"type": "string",
+					"minLength": 1
+				  },
+				  "id": {
+					"type": "string",
+					"minLength": 1
+				  },
+				  "name": {
+					"type": "string",
+					"minLength": 1
+				  }
+				},
+				"required": [
+				  "NodeType",
+				  "Package",
+				  "id",
+				  "name"
+				]
+			  }
+			}
+		  }
+		}
+	  },
+	  "required": [
+		"nodes"
+	  ]
+	}
+  },
+  "required": [
+	"Keyword",
+	"packages",
+	"routines"
+  ]
+}

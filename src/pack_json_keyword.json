@@ -1,0 +1,28 @@
+{
+	"Keyword": [{
+		"id": "k1",
+		"name": "SSN",
+		"type": "Regex",
+		"value": ".E3N1\"-\"3N1\"-\"4N.E"
+	}, {
+		"id": "k2",
+		"name": "IPV4 Address",
+		"type": "Regex",
+		"value": ".E3(1.3N1\".\")1.3N.E"
+	}, {
+		"id": "k3",
+		"name": "^GMPLUTL",
+		"type": "Upper",
+		"value": "^GMPLUTL"
+	}, {
+		"id": "k4",
+		"name": "ACCESS",
+		"type": "Upper",
+		"value": "ACCESS"
+	}, {
+		"id": "k5",
+		"name": "ADDRESS",
+		"type": "Upper",
+		"value": "ADDRESS"
+	}]
+}
