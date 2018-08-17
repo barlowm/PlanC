@@ -20,18 +20,23 @@ $(document).ready(function() {
 	return Promise.all([a.initData(env)])
 		.then(function(state) {
 			if (state) {
-				const vul = a.getVulnerabilities();
-				const pack = a.getPackages();
-				const routines = a.getRoutines();
+				// const vul = a.getVulnerabilities();
+				// const pack = a.getPackages();
+				// const routines = a.getRoutines();
 
-				const Table = $("#response");
-				const tableData = a.getTable();
-				Table.html(tableData);
+				// const Table = $("#response");
+				// const tableData = a.getTable();
+				// Table.html(tableData);
 				$("#pageLoading").hide();
 
-				$(".ExpandCollapse").click(function() {
-					$(this).parents().next('.hide').toggle();
-				});
+
+				let someData = a.walkRoutineTable();
+				debugger;
+
+
+				// $(".ExpandCollapse").click(function() {
+				// 	$(this).parents().next('.hide').toggle();
+				// });
 			}
 			return null;
 		}

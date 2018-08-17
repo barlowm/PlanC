@@ -66,6 +66,95 @@ const theApp = function() {
 		return t1 + t2 + t3;
 	};
 
+
+
+
+
+
+
+
+
+	let noVulnerabilities = [];
+	let withVulnerabilities = [];
+
+	// Build Table based on Routines
+	// This object returns an array of named package objects.
+	// Each package object contains the package info plus an array of named routine objects
+	// Each routine object contains the routine info plus an array of vulnerability objects
+	// Each vulnerability object contains the vulnerability info plus an array of code lines within the file specified by the routine object
+	// e.g.
+	/*
+		KIDS: {
+			id: "p1", name: "KIDS", numGlobals: 0, numRoutines: 89, vulnerabilities: [
+			r1||33761: {
+				rID: "r1||33761", rName: "XPDDP1", rType: "Routine", vuls:
+				[
+					{vulID: "k5", vulLines: Array(3), vulName: "ADDRESS", vulType: "Upper", vulValue: "ADDRESS"},
+					{vulID: "k32", vulLines: Array(2), vulName: "IDENTITY", vulType: "Upper", vulValue: "IDENTITY"},
+					{vulID: "k6", vulLines: Array(3), vulName: "ADR", vulType: "Upper", vulValue: "ADR"},
+					{vulID: "k18", vulLines: Array(2), vulName: "CREDENTIALS", vulType: "Upper", vulValue: "CREDENTIALS"}
+				]
+			}
+
+			r1||33762: {
+				rID: "r1||33762", rName: "XPDDP2", rType: "Routine", vuls:
+				[
+					{vulID: "k6", vulLines: Array(3), vulName: "ADR", vulType: "Upper", vulValue: "ADR"},
+					{vulID: "k18", vulLines: Array(2), vulName: "CREDENTIALS", vulType: "Upper", vulValue: "CREDENTIALS"}
+				]
+			}
+
+			r1||33763: {
+				rID: "r1||33763", rName: "XPDDP3", rType: "Routine", vuls:
+				[
+					{vulID: "k6", vulLines: Array(3), vulName: "ADR", vulType: "Upper", vulValue: "ADR"}
+					{vulID: "k18", vulLines: Array(2), vulName: "CREDENTIALS", vulType: "Upper", vulValue: "CREDENTIALS"}
+					{vulID: "k33", vulLines: Array(3), vulName: "INITIALIZE", vulType: "Upper", vulValue: "INITIALIZE"}
+					{vulID: "k28", vulLines: Array(2), vulName: "HANDSHAKE", vulType: "Upper", vulValue: "HANDSHAKE"}
+				]
+			}
+		}
+
+	*/
+
+	const walkRoutineTable = function() {
+		debugger;
+		const theRoutines = getRoutines();
+		theRoutines.forEach(function(routine) {
+			let r = routine.data;
+			if (r.Vulnerabilities) {
+				let pID = r.Package;
+				let p = getPackage(pID);
+				if(!withVulnerabilities[p.name]) {
+					withVulnerabilities[p.name] = [];
+					let pEl = { name: p.name, id: p.id, numRoutines: p.Routines, numGlobals: p.Globals, vulnerabilities: [] };
+					withVulnerabilities[p.name] = pEl;
+				}
+
+				let theEl = withVulnerabilities[p.name];
+				let vulList = null;
+				if (theEl.vulnerabilities && theEl.vulnerabilities[r.id]) {
+					vulList = theEl.vulnerabilities[r.id];
+				}
+				else {
+					vulList = { rID: r.id, rName: r.name, rType: r.NodeType, vuls: []};
+					theEl.vulnerabilities[r.id] = vulList;
+				}
+				r.Vulnerabilities.forEach(function(v) {
+					let vulInfo = getVulnerability(v.id);
+					let aVul = { vulID: v.id, vulLines: v.lines, vulName: vulInfo.name, vulType: vulInfo.type, vulValue: vulInfo.value };
+					vulList.vuls.push(aVul);
+				});
+				theEl.vulnerabilities[r.id] = vulList;
+			}
+			else {
+				noVulnerabilities.push(r);
+			}
+		});
+		return([withVulnerabilities, noVulnerabilities]);
+
+	}
+
 	return {
 		getVulnerabilities,
 		getPackages,
@@ -73,6 +162,7 @@ const theApp = function() {
 		getTable,
 		getPackage,
 		getVulnerability,
+		walkRoutineTable,
 		initData
 	}
 };
