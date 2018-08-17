@@ -114,7 +114,6 @@ const theApp = function() {
 				]
 			}
 		}
-
 	*/
 
 	const walkRoutineTable = function() {
