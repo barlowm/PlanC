@@ -66,7 +66,6 @@ const getTableRow = function(d, dataTypeIdx, NumVulnerabilities, getPackage) {
 }
 
 const getTable = function(data, dataTypeIdx, getPack) {
-	console.log("Building Table - ", type[dataTypeIdx].name)
 	let NumVulnerabilities = 0;
 	let rows = "";
 	data.forEach(function(d) {

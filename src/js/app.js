@@ -33,14 +33,12 @@ const theApp = function() {
 
 	const initData = function(env) {
 		if (env) {
-			console.log(env);
 			return Promise.all([
 				getData.get_data("./pack_json_keyword.json"),
 				getData.get_data("./pack_json_package.json"),
 				getData.get_data("./pack_json_routine.json")
 			])
 				.then(function(values) {
-					console.log("Got all data");
 					Vulnerabilities = values[0].Keyword;
 					getVulnerabilities().forEach(function(v) {
 						VulnerabilitiesArray[v.id] = v;
@@ -61,13 +59,9 @@ const theApp = function() {
 	};
 
 	const getTable = function() {
-		console.log("Build Vulnerabilities");
 		let t1 = tables.getVulnerabilitiesTable(getVulnerabilities(), null);
-
-		console.log("Build Routines");
+			// Doing the routines table first so we can populate additional data into the packages array
 		let t3 = tables.getRoutinesTable(getRoutines(), getPackage);
-
-		console.log("Build Packages");
 		let t2 = tables.getPackagesTable(getPackages(), null);
 		return t1 + t2 + t3;
 	};

@@ -16,13 +16,10 @@ const env = {
 const $ = require("jquery");
 const a = require("./app.js");
 
-
 $(document).ready(function() {
-	var xxxy = Promise.all([a.initData(env)])
+	return Promise.all([a.initData(env)])
 		.then(function(state) {
-			console.log("Load - ", new Date());
 			if (state) {
-				console.log("Data Good");
 				const vul = a.getVulnerabilities();
 				const pack = a.getPackages();
 				const routines = a.getRoutines();
@@ -33,19 +30,12 @@ $(document).ready(function() {
 				$("#pageLoading").hide();
 
 				$(".ExpandCollapse").click(function() {
-					console.log("Click");
 					$(this).parents().next('.hide').toggle();
 				});
-
-				console.log("Page is finished loading");
 			}
-			else {
-				console.log("Data Failure");
-			}
-		return null;
+			return null;
 		}
 	);
-		return null;
 });
 
 

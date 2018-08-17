@@ -19,24 +19,19 @@ const get_JSON = function() {
 	};
 
  	const get_schema = function(schemaPath) {
-		// console.log("Read Schema");
 		if(!schemaPath) {
 			schemaPath = env.SCHEMA;
 		}
 		return get_data(schemaPath);
  	};
 
-
 	const verify_json = function(schemaPath, packagePath) {
-		// console.log("Verify JSON");
 		if(!schemaPath) {
 			schemaPath = env.SCHEMA;
 		}
 		if(!packagePath) {
 			packagePath = env.PACKAGE;
 		}
-		// console.log("Reading Package - ", packagePath);
-		// console.log("Reading SCHEMA - ", schemaPath);
 		return Promise.all([get_schema(), get_data()])
 			.then( function(values) {
 				const valid = tv4.validate(values[1], values[0]);
