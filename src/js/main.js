@@ -31,6 +31,12 @@ $(document).ready(function() {
 
 
 				let someData = a.walkRoutineTable();
+
+				const Table = $("#response");
+				const tData = a.renderRoutineTable(someData[0])
+				// const rslt = JSON.stringify(someData[0]["KIDS"], null, "    ");
+				Table.html(tData);
+				// console.log(someData);
 				debugger;
 
 

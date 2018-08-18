@@ -1,0 +1,37 @@
+{
+	"packages": {
+		"nodes": [
+			{
+				"data": {
+					"Globals": 0,
+					"NodeType": "Package",
+					"Routines": 89,
+					"id": "p1",
+					"name": "KIDS",
+					"score": 89
+				}
+			},
+
+			{
+				"data": {
+					"Globals": 0,
+					"NodeType": "Package",
+					"Routines": 588,
+					"id": "p21",
+					"name": "ACCOUNTS RECEIVABLE",
+					"score": 588
+				}
+			},
+			{
+				"data": {
+					"Globals": 0,
+					"NodeType": "Package",
+					"Routines": 243,
+					"id": "p37",
+					"name": "AUTOMATED MED INFO EXCHANGE",
+					"score": 243
+				}
+			}
+		]
+	}
+}

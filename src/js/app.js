@@ -151,8 +151,57 @@ const theApp = function() {
 			}
 		});
 		return([withVulnerabilities, noVulnerabilities]);
+	};
 
+	const getVulnerabilityData = function(rTableSubSubRow) {
+		let aRow = "";	//`<table class="Vulnerability"><thead><tr><th colspan="4">Vulnerability</th></tr></thead>`;
+		aRow += `<tr class="Vulnerability"><td>&nbsp;</td><td>&nbsp;</td>`;
+		aRow += `<td>${rTableSubSubRow.vulName}</td>`;
+		aRow += `<td>${rTableSubSubRow.vulType}</td>`;
+		aRow += `<td>${rTableSubSubRow.vulValue}</td>`;
+		aRow += `<td>${rTableSubSubRow.vulLines.join("<br>")}</td>`;
+		aRow += `</tr>`;
+		return aRow;
 	}
+
+	const getRoutineData = function(rTableSubRow) {
+		let aRow = `<tr class="Routine"><td>&nbsp;</td><td>${rTableSubRow.rName}</td><td>${rTableSubRow.rType}</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>`;
+		aRow += `<tr><td colspan="6">`;
+		let subRows = rTableSubRow.vuls;
+		let subRowData = `<table class="Vulnerability"><thead><tr><th colspan="4">Vulnerability</th></tr></thead>`;
+		for (var i = 0; i < subRows.length; i++) {
+			subRowData += getVulnerabilityData(subRows[i]);
+		}
+		subRowData +="</table></td></tr>";
+		aRow += subRowData;
+		return aRow;
+	}
+
+	const getPackageData = function(rTableRow) {
+		let aRow = `<tr class="Package"><td>${rTableRow.name}</td><td>${rTableRow.numRoutines}</td><td>${rTableRow.numGlobals}</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>`;
+		let subRows = rTableRow.vulnerabilities;
+		let subRowData = "";
+		for (var key in subRows) {
+			if (subRows.hasOwnProperty(key)) {
+				subRowData += getRoutineData(subRows[key]);
+			}
+		}
+		aRow += subRowData;
+		return aRow;
+	};
+
+	const renderRoutineTable = function(rTable) {
+		let theTable = "";
+		for (var key in rTable) {
+			if (rTable.hasOwnProperty(key)) {
+				theTable += getPackageData(rTable[key]);
+			}
+		}
+		return theTable;
+	}
+
+
+
 
 	return {
 		getVulnerabilities,
@@ -162,6 +211,7 @@ const theApp = function() {
 		getPackage,
 		getVulnerability,
 		walkRoutineTable,
+		renderRoutineTable,
 		initData
 	}
 };
