@@ -59,7 +59,7 @@ const theApp = function() {
 	};
 
 	const getSuperTableData = function() {
-		return(tables.getSuperTable());
+		return(tables.getSuperTable(getPackages, getRoutines, getRoutines));
 	}
 
 

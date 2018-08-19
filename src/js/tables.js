@@ -108,8 +108,37 @@ const getTables = function() {
 	};
 
 
-	const getSuperTable = function() {
-		return("<table></table>");
+/*
+ *
+ *	"Globals": 0,
+ *	"NodeType": "Package",
+ *	"Routines": 588,
+ *	"id": "p21",
+ *	"name": "ACCOUNTS RECEIVABLE",
+ *	"score": 588
+ */
+	const getST_PackageRow = function(packageData) {
+		const pName = packageData.name;
+		const pID = packageData.id;
+		const pRout = packageData.Routines;
+		const pGlobals = packageData.Globals;
+		let pRow = `<tr data-st-group="${pName}" class="headerRow"><td>${pName}</td><td>${pRout}</td><td>${pGlobals}</td></tr>`;
+		return pRow;
+	};
+
+	const getSuperTable = function(packages, routines, vulnerabilities) {
+		let thePackages = packages();
+		let tableData = `<table id="Packages" class="ST_demoTable1", data-st-id="ST_demoTable1">`;
+
+		tableData += `<thead><tr><th>Package Name</th><th># Routines</th><th># Globals</th></tr></thead>`;
+		thePackages.forEach(function(p) {
+			let pData = p.data;
+			tableData += getST_PackageRow(pData);
+		});
+
+
+		tableData += "</table>";
+		return(tableData);
 	};
 
 
