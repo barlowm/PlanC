@@ -20,29 +20,12 @@ $(document).ready(function() {
 	return Promise.all([a.initData(env)])
 		.then(function(state) {
 			if (state) {
-				// const vul = a.getVulnerabilities();
-				// const pack = a.getPackages();
-				// const routines = a.getRoutines();
-
-				// const Table = $("#response");
-				// const tableData = a.getTable();
-				// Table.html(tableData);
 				$("#pageLoading").hide();
 
-
-				let someData = a.walkRoutineTable();
-
+				let theTableData = a.getSuperTableData();
 				const Table = $("#response");
-				const tData = a.renderRoutineTable(someData[0])
-				// const rslt = JSON.stringify(someData[0]["KIDS"], null, "    ");
-				Table.html(tData);
-				// console.log(someData);
+				Table.html(theTableData);
 				debugger;
-
-
-				// $(".ExpandCollapse").click(function() {
-				// 	$(this).parents().next('.hide').toggle();
-				// });
 			}
 			return null;
 		}
