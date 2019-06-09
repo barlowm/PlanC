@@ -35,8 +35,8 @@ const getTableRow = function(d, dataTypeIdx, NumVulnerabilities, getPackage) {
 		if (dataTypeIdx > 0) {
 			if (getPackage && "Package" == CellKey) {
 				packageID = data[CellKey]
-				let package = getPackage(packageID);
-				row += `<td>${package.name}</td>`;
+				let pkgDetails = getPackage(packageID);
+				row += `<td>${pkgDetails.name}</td>`;
 			}
 			else {
 				row += `<td>${data[CellKey]}</td>`;
@@ -84,7 +84,7 @@ const getTable = function(data, dataTypeIdx, getPack) {
 	t1 += `</th></tr></thead>`;
 
 	t1 += `<tbody class="hide"><tr>`;
-	for (i = 0; i < type[dataTypeIdx].headers.length; i++) {
+	for (var i = 0; i < type[dataTypeIdx].headers.length; i++) {
 		t1 += `<th>${type[dataTypeIdx].headers[i]}</th>`;
 	}
 	t1 += `</tr>`;

@@ -26,9 +26,9 @@ const theApp = function() {
 	const getRoutines = function() {
 		return Routines.nodes;
 	};
-	const getRoutine = function(routineId) {
-		return RoutinesArray[routineId];
-	};
+	// const getRoutine = function(routineId) {
+	// 	return RoutinesArray[routineId];
+	// };
 
 
 	const initData = function(env) {

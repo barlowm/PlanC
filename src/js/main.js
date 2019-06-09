@@ -20,9 +20,9 @@ $(document).ready(function() {
 	return Promise.all([a.initData(env)])
 		.then(function(state) {
 			if (state) {
-				const vul = a.getVulnerabilities();
-				const pack = a.getPackages();
-				const routines = a.getRoutines();
+				// const vul = a.getVulnerabilities();
+				// const pack = a.getPackages();
+				// const routines = a.getRoutines();
 
 				const Table = $("#response");
 				const tableData = a.getTable();
