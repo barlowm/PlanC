@@ -7,7 +7,7 @@ const theApp = function() {
 	let Packages = "";
 	let PackagesArray = [];
 	let Routines = "";
-	let RoutinesArray = [];
+	// let RoutinesArray = [];	RoutinesArray not used anywhere...
 
 	const getVulnerabilities = function() {
 		return Vulnerabilities;
@@ -49,9 +49,9 @@ const theApp = function() {
 					});
 
 					Routines = values[2].routines;
-					getRoutines().forEach(function(r) {
-						RoutinesArray[r.data.id] = r.data;
-					});
+					// getRoutines().forEach(function(r) {
+					// 	RoutinesArray[r.data.id] = r.data;
+					// });
 					return true;
 				});
 		}
